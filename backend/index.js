@@ -16,8 +16,8 @@ app.get("/", (req, res) => {
   res.send(req.url);
 });
 
-// Registering/SignUp User Route
-app.use("/api/auth/register", authRoutes);
+//  Handling signup/sign authentication
+app.use("/api/auth/", authRoutes);
 
 app.get("/", (req, res) => {
   res.send("Home Route");

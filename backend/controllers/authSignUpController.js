@@ -18,14 +18,11 @@ const crypto = require("crypto"); // For generating unique IDs
 // Import student and instructor models
 const student = require("../models/studentModel");
 const instructor = require("../models/instructorModel");
+const sendResponse = require("../utils/sendResponse");
 
 // -------------------------
 // Helper function: Send consistent API responses
 // -------------------------
-const sendResponse = (res, status, message, data = null) => {
-  res.status(status).json({ message, ...(data != null && { data }) });
-};
-
 // -------------------------
 // Zod Schemas for Input Validation
 // -------------------------

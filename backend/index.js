@@ -9,6 +9,8 @@ app.use(express.json());
 
 // Importing Routes
 const authRoutes = require("./routes/authRoutes");
+const userAuth = require("./middleware/authMiddleware");
+const roleMiddleware = require("./middleware/roleMidlleware");
 
 // Handling All Routes
 
@@ -18,6 +20,12 @@ app.get("/", (req, res) => {
 
 //  Handling signup/sign authentication
 app.use("/api/auth/", authRoutes);
+
+// Testing api -- will be deleted later in final version
+app.get('/api/test/protected',userAuth,roleMiddleware("student"),(req,res)=>{
+  console.log(req.user)
+  res.send(`Hello I am ${(req.user['role'] === 'student' ? 'a' : 'an')} ${req.user['role']}`)
+})
 
 app.get("/", (req, res) => {
   res.send("Home Route");

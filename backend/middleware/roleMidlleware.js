@@ -1,8 +1,9 @@
 const sendResponse = require("../utils/sendResponse");
 
-function roleMiddleware(role) {
+
+function roleMiddleware(...roles) {
   return function (req, res, next) {
-    if (req.user.role !== role) {
+    if (!roles.includes(req.user.role)) {
       return sendResponse(res, 403, "Forbidden");
     }
     next();

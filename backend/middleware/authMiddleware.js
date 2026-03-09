@@ -12,11 +12,11 @@ function userAuth(req, res, next) {
   }
 
   const token = authHeader.replace("Bearer ", "");
-  console.log(`JWT TOKEN : ${token}`);
+  // console.log(`JWT TOKEN : ${token}`);
   try {
     const verified = jwt.verify(token, JWT_SECRET_KEY);
     req.user = verified;
-    console.log(req.user);
+    // console.log(req.user);
     next();
   } catch (err) {
     return sendResponse(res,403,"Invalid or Expred Token")
